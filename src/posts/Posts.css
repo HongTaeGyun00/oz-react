@@ -5,8 +5,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: #f5f7fa;
   color: #333;
   line-height: 1.6;
@@ -105,12 +104,8 @@ body {
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .auto-refresh-toggle {
@@ -361,7 +356,7 @@ body {
 }
 
 .post-card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -552,8 +547,7 @@ body {
   padding: 10px 12px;
 }
 
-.loading,
-.error {
+.loading, .error {
   text-align: center;
   padding: 60px 20px;
   font-size: 1.2em;
@@ -578,67 +572,67 @@ body {
   .app {
     padding: 0 15px;
   }
-
+  
   .header {
     margin: 0 -15px 30px;
     padding: 30px 0;
   }
-
+  
   .header h1 {
     font-size: 2em;
   }
-
+  
   .refresh-info {
     flex-direction: column;
     align-items: stretch;
     gap: 15px;
   }
-
+  
   .refresh-actions {
     justify-content: space-between;
     gap: 15px;
   }
-
+  
   .filters-container {
     grid-template-columns: 1fr;
     gap: 15px;
   }
-
+  
   .filter-container,
   .search-container {
     flex-direction: column;
     align-items: stretch;
   }
-
+  
   .filter-label,
   .search-label {
     min-width: auto;
   }
-
+  
   .filter-select,
   .search-input {
     min-width: auto;
   }
-
+  
   .posts-grid {
     grid-template-columns: 1fr;
     gap: 15px;
   }
-
+  
   .post-card {
     padding: 20px;
   }
-
+  
   .pagination {
     gap: 6px;
   }
-
+  
   .pagination-button {
     padding: 8px 12px;
     min-width: 40px;
     font-size: 0.85em;
   }
-
+  
   .pagination-button.first,
   .pagination-button.last {
     display: none;
@@ -649,39 +643,39 @@ body {
   .header h1 {
     font-size: 1.8em;
   }
-
+  
   .refresh-control {
     padding: 12px 15px;
   }
-
+  
   .refresh-actions {
     flex-direction: column;
     gap: 10px;
   }
-
+  
   .post-card {
     padding: 16px;
   }
-
+  
   .post-title {
     font-size: 1.1em;
   }
-
+  
   .user-filter,
   .search-filter {
     padding: 15px;
   }
-
+  
   .pagination {
     gap: 4px;
   }
-
+  
   .pagination-button {
     padding: 8px 10px;
     min-width: 36px;
     font-size: 0.8em;
   }
-
+  
   .pagination-info {
     font-size: 0.8em;
   }
