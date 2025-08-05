@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import './Posts.css'
+// import './Posts.css'
 import Header from '../components/posts/Header'
 import PostList from '../components/posts/PostList'
 import UserFilter from '../components/posts/UserFilter'
@@ -88,51 +88,49 @@ function Posts() {
   }
 
   return (
-    <div className="app">
+    <div className="space-y-6">
       <Header postsCount={filteredPosts.length} />
       
-      <main className="main">
-        <RefreshControl 
-          onRefresh={handleRefresh}
-          loading={loading}
-          lastUpdated={lastUpdated}
+      <RefreshControl 
+        onRefresh={handleRefresh}
+        loading={loading}
+        lastUpdated={lastUpdated}
+      />
+      
+      <div className="space-y-6">
+        <UserFilter 
+          userIdFilter={userIdFilter}
+          onFilterChange={handleFilterChange}
+          totalPosts={posts.length}
+          filteredCount={filteredPosts.length}
         />
         
-        <div className="filters-container">
-          <UserFilter 
-            userIdFilter={userIdFilter}
-            onFilterChange={handleFilterChange}
-            totalPosts={posts.length}
-            filteredCount={filteredPosts.length}
-          />
-          
-          <SearchFilter 
-            searchTerm={searchTerm}
-            onSearchChange={handleSearchChange}
-            searchResults={filteredPosts.length}
-            highlightEnabled={highlightEnabled}
-            onHighlightToggle={handleHighlightToggle}
-          />
-        </div>
-        
-        <PostList 
-          posts={currentPosts} 
-          loading={loading} 
-          error={error}
+        <SearchFilter 
           searchTerm={searchTerm}
+          onSearchChange={handleSearchChange}
+          searchResults={filteredPosts.length}
           highlightEnabled={highlightEnabled}
+          onHighlightToggle={handleHighlightToggle}
         />
-        
-        {!loading && !error && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            itemsPerPage={itemsPerPage}
-            totalItems={filteredPosts.length}
-          />
-        )}
-      </main>
+      </div>
+      
+      <PostList 
+        posts={currentPosts} 
+        loading={loading} 
+        error={error}
+        searchTerm={searchTerm}
+        highlightEnabled={highlightEnabled}
+      />
+      
+      {!loading && !error && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          itemsPerPage={itemsPerPage}
+          totalItems={filteredPosts.length}
+        />
+      )}
     </div>
   )
 }

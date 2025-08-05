@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './Counter.css'
 import TaskInput from '../components/counter/TaskInput'
 import TaskList from '../components/counter/TaskList'
 import TaskCounter from '../components/counter/TaskCounter'
@@ -56,9 +55,14 @@ function Counter() {
   }
 
   return (
-    <div className="container">
-      <h1>할 일 목록</h1>
-      <button onClick={moveToPosts}>게시판으로 이동</button>
+    <div className="max-w-2xl w-11/12 mx-auto my-5 bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
+      <h1 className="text-slate-700 text-center mb-6 font-semibold text-2xl">✅ 할 일 목록</h1>
+      <button 
+        onClick={moveToPosts}
+        className="w-full mb-6 px-4 py-3 bg-blue-500 text-white rounded-lg text-base font-medium hover:bg-blue-600 active:translate-y-px transition-all duration-200"
+      >
+        📋 게시판으로 이동
+      </button>
       
       <TaskInput
         inputValue={inputValue}

@@ -12,27 +12,31 @@ function PostCard({ post, searchTerm, highlightEnabled }) {
     
     return parts.map((part, index) => {
       if (part.toLowerCase() === term.toLowerCase()) {
-        return `<mark class="highlight">${part}</mark>`
+        return `<mark class="bg-yellow-200 px-1 rounded">${part}</mark>`
       }
       return part
     }).join('')
   }
 
   return (
-    <Link to={`/posts/${post.id}`}>
-      <article className="post-card">
-        <div className="post-header">
-          <span className="post-id">#{post.id}</span>
-          <span className="user-id">작성자 {post.userId}</span>
+    <Link to={`/posts/${post.id}`} className="block">
+      <article className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 h-full border border-gray-100">
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-sm font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">
+            #{post.id}
+          </span>
+          <span className="text-sm text-gray-500">
+            작성자 {post.userId}
+          </span>
         </div>
         <h2 
-          className="post-title"
+          className="text-lg font-semibold text-gray-900 mb-3 line-clamp-2"
           dangerouslySetInnerHTML={{ 
             __html: highlightText(post.title, searchTerm) 
           }}
         />
         <p 
-          className="post-body"
+          className="text-gray-600 text-sm leading-relaxed line-clamp-3"
           dangerouslySetInnerHTML={{ 
             __html: highlightText(post.body, searchTerm) 
           }}

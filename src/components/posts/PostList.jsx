@@ -5,7 +5,7 @@ import ErrorMessage from './ErrorMessage'
 function PostList({ posts, loading, error, searchTerm, highlightEnabled }) {
   if (loading) {
     return (
-      <div className="posts-grid">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {Array.from({ length: 6 }, (_, index) => (
           <SkeletonCard key={index} />
         ))}
@@ -18,7 +18,7 @@ function PostList({ posts, loading, error, searchTerm, highlightEnabled }) {
   }
 
   return (
-    <div className="posts-grid">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {posts.map(post => (
         <PostCard 
           key={post.id} 
