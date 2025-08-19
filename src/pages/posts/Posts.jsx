@@ -1,16 +1,15 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
 // import './Posts.css'
-import Header from '../components/posts/Header'
-import PostList from '../components/posts/PostList'
-import UserFilter from '../components/posts/UserFilter'
-import SearchFilter from '../components/posts/SearchFilter'
-import RefreshControl from '../components/posts/RefreshControl'
-import Pagination from '../components/posts/Pagination'
+import Header from '../../components/posts/Header'
+import PostList from '../../components/posts/PostList'
+import UserFilter from '../../components/posts/UserFilter'
+import SearchFilter from '../../components/posts/SearchFilter'
+import RefreshControl from '../../components/posts/RefreshControl'
+import Pagination from '../../components/posts/Pagination'
+import { usePosts } from '../../util/hooks'
 
 function Posts() {
-  const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const { posts, loading, error, refetch } = usePosts()
   const [userIdFilter, setUserIdFilter] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
@@ -38,30 +37,6 @@ function Posts() {
   const endIndex = startIndex + itemsPerPage
   const currentPosts = filteredPosts.slice(startIndex, endIndex)
 
-  // 데이터를 가져오는 함수 (useCallback으로 최적화)
-  const fetchPosts = useCallback(async () => {
-    try {
-      setLoading(true)
-      setError(null)
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts')
-      if (!response.ok) {
-        throw new Error('데이터를 불러오는데 실패했습니다.')
-      }
-      const data = await response.json()
-      setPosts(data)
-      setLastUpdated(new Date())
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }, [])
-
-  // 초기 데이터 로드
-  useEffect(() => {
-    fetchPosts()
-  }, [fetchPosts])
-
   const handleFilterChange = (value) => {
     setUserIdFilter(value)
     setCurrentPage(1) // 필터 변경시 첫 페이지로 이동
@@ -79,8 +54,9 @@ function Posts() {
   }
 
   const handleRefresh = () => {
-    fetchPosts()
+    refetch()
     setCurrentPage(1) // 새로고침 시 첫 페이지로 이동
+    setLastUpdated(new Date())
   }
 
   const handleHighlightToggle = (enabled) => {
@@ -115,6 +91,7 @@ function Posts() {
       </div>
       
       <PostList 
+        from={'posts'}
         posts={currentPosts} 
         loading={loading} 
         error={error}
